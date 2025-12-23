@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-CREATE-ENUMS
+      author: Eshwari Chavan
+      comment: create all required enums for the table
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 001-CREATE-ENUMS.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+  - changeSet:
+      id: 002-CREATE-CORE-TABLES
+      author: Eshwari Chavan
+      comment: create all core required tables
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 002-CREATE-CORE-TABLES.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+
+  - changeSet:
+      id: 003-CREATE-ASSESSMENT-TABLES
+      author: Eshwari Chavan
+      comment: create all Assessment required tables
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 003-CREATE-ASSESSMENT-TABLES.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+

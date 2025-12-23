@@ -1,0 +1,21 @@
+//package com.example.accelerator.exception;
+//
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+//import org.springframework.stereotype.Component;
+//
+//import java.io.IOException;
+//import java.nio.file.AccessDeniedException;
+//
+//@Component
+//public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+//
+//    @Override
+//    public void handle(HttpServletRequest request,
+//                       HttpServletResponse response,
+//                       AccessDeniedException accessDeniedException) throws IOException {
+//        response.setContentType("application/json");
+//        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//        response.getWriter().write("{\"error\": \"Forbidden - You don't have permission\"}");
+//    }
+//}
