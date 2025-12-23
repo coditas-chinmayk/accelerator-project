@@ -26,7 +26,6 @@ public class AssessmentQuestion {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "assessment_id")
-    @Column(name = "assessment_id")
     private Assessment assessment;
 
     @Column(nullable = false, columnDefinition = "TEXT", name = "question_text")
@@ -55,10 +54,10 @@ public class AssessmentQuestion {
     private LocalDateTime updatedAt;
 
     @ManyToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
     @ManyToOne
-    @Column(name = "updated_by")
+    @JoinColumn(name = "updated_by")
     private User updatedBy;
 }

@@ -28,17 +28,17 @@ public class Category {
     private String description;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
 
     @ManyToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
     @ManyToOne
-    @Column(name = "updated_by")
+    @JoinColumn(name = "updated_by")
     private User updatedBy;
 
     @PrePersist

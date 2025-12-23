@@ -25,8 +25,8 @@ public class Hospital {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "name")
-    private List<User> usersList = new ArrayList<>();
+    @OneToMany(mappedBy = "hospital")
+    private List<User> userList = new ArrayList<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

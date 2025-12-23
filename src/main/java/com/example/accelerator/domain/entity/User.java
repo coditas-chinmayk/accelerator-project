@@ -32,7 +32,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "hospital_id")
-    private Hospital hospitalName;
+    private Hospital hospital;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
