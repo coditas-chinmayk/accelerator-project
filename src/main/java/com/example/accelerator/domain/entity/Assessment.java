@@ -1,10 +1,16 @@
 package com.example.accelerator.domain.entity;
 
+import com.example.accelerator.domain.enums.AssessmentStatus;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "assessment")
 public class Assessment {
 
@@ -22,15 +28,21 @@ public class Assessment {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status;   // DRAFT
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    private AssessmentStatus status;   // DRAFT or FINAL
 
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @Column(nullable = false)
-    private Instant createdAt;
+    @Column(name = "updated_by")
+    private User updatedBy;
 
-    private Instant updatedAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
 }
