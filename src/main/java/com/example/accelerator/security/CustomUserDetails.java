@@ -1,6 +1,6 @@
 package com.example.accelerator.security;
 
-import com.example.accelerator.domain.entity.Users;
+import com.example.accelerator.domain.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,13 +11,13 @@ import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
 
-    private final Users user;
+    private final User user;
 
-    public CustomUserDetails(Users user) {
+    public CustomUserDetails(User user) {
         this.user = user;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
