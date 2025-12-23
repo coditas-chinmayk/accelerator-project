@@ -49,7 +49,8 @@ public class Assessment {
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @Column(name = "updated_by")
+    @ManyToOne
+    @JoinColumn(name = "updated_by")
     private User updatedBy;
 
     @Column(nullable = false, name = "created_at")
@@ -57,5 +58,16 @@ public class Assessment {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate(){
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt = LocalDateTime.now();
+
+    }
 
 }
