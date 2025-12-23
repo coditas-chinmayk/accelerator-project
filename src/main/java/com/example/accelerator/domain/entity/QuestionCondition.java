@@ -3,13 +3,19 @@ package com.example.accelerator.domain.entity;
 import com.example.accelerator.domain.enums.ConditionOperator;
 import com.example.accelerator.domain.enums.ExpectedValue;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "question_condition")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuestionCondition {
 
     @Id

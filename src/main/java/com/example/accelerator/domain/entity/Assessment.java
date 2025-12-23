@@ -2,7 +2,10 @@ package com.example.accelerator.domain.entity;
 
 import com.example.accelerator.domain.enums.AssessmentStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -12,16 +15,20 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "assessment")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Assessment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "name")
     private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", name = "description")
     private String description;
 
     @ManyToOne
@@ -29,7 +36,7 @@ public class Assessment {
     private Category category;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, name = "assessment_status")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private AssessmentStatus status;   // DRAFT or FINAL
 
@@ -40,9 +47,10 @@ public class Assessment {
     @Column(name = "updated_by")
     private User updatedBy;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
 }
