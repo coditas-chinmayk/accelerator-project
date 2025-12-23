@@ -2,21 +2,18 @@ package com.example.accelerator.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "hospital")
-public class Hospital {
+@Table(name = "users")
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,8 +22,15 @@ public class Hospital {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "name")
-    private List<User> usersList = new ArrayList<>();
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospitalName;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

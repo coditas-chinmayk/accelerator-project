@@ -1,38 +1,41 @@
 package com.example.accelerator.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-public class Users {
+@Data
+@Table(name = "category")
+@Builder
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(nullable = false, length = 100, name = "name")
     private String name;
 
-    @Column
-    private String email;
+    @Column(columnDefinition = "TEXT", name = "description")
+    private String description;
 
-    @Column
-    private String password;
-
-    @ManyToOne
-    @JoinColumn(name = "hospital_id")
-    private Hospital hospitalName;
-
+    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt = LocalDateTime.now();
+
+    @ManyToOne
+    @Column(name = "created_by")
+    private User createdBy;
+
+    @ManyToOne
+    @Column(name = "updated_by")
+    private User updatedBy;
 
     @PrePersist
     protected void onCreate(){
@@ -44,5 +47,4 @@ public class Users {
         updatedAt = LocalDateTime.now();
 
     }
-
 }
