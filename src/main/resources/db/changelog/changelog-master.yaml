@@ -42,3 +42,15 @@ databaseChangeLog:
             stripComments: true
 
 
+  - changeSet:
+      id: 004-ALTER-QUESTIONCONDITION-TABLE-COLUMN
+      author: Eshwari Chavan
+      comment: alter question_condition table column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 004-ALTER-QUESTIONCONDITION-TABLE-COLUMN.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
