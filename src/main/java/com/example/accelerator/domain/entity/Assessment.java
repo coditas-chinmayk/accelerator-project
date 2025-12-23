@@ -11,6 +11,8 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -39,6 +41,9 @@ public class Assessment {
     @Column(nullable = false, name = "assessment_status")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private AssessmentStatus status;   // DRAFT or FINAL
+
+    @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AssessmentQuestion> questions = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "created_by")
