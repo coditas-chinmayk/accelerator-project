@@ -22,5 +22,5 @@ public class Hospital {
     private String name;
 
     @OneToMany(mappedBy = "name")
-    private List<Users> usersList = new ArrayList<>();
+    private List<User> usersList = new ArrayList<>();
 }
