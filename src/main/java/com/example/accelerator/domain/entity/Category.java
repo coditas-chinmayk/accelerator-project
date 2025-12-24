@@ -1,8 +1,10 @@
 package com.example.accelerator.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "category")
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
@@ -24,17 +28,17 @@ public class Category {
     private String description;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
 
     @ManyToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
     @ManyToOne
-    @Column(name = "updated_by")
+    @JoinColumn(name = "updated_by")
     private User updatedBy;
 
     @PrePersist

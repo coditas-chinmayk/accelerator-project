@@ -2,7 +2,10 @@ package com.example.accelerator.domain.entity;
 
 import com.example.accelerator.domain.enums.QuestionType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -11,6 +14,9 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "assessment_questions")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssessmentQuestion {
 
     @Id
@@ -20,7 +26,6 @@ public class AssessmentQuestion {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "assessment_id")
-    @Column(name = "assessment_id")
     private Assessment assessment;
 
     @Column(nullable = false, columnDefinition = "TEXT", name = "question_text")
@@ -51,10 +56,21 @@ public class AssessmentQuestion {
 
     // mappings injected :
     @ManyToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
     @ManyToOne
-    @Column(name = "updated_by")
+    @JoinColumn(name = "updated_by")
     private User updatedBy;
+
+    @PrePersist
+    protected void onCreate(){
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt = LocalDateTime.now();
+
+    }
 }
