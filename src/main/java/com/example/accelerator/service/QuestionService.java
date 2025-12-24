@@ -1,19 +1,19 @@
 package com.example.accelerator.service;
 
-import com.example.accelerator.dto.QuestionRequestDTO;
-import com.example.accelerator.dto.QuestionResponseDTO;
+import com.example.accelerator.dto.QuestionRequestDto;
+import com.example.accelerator.dto.QuestionResponseDto;
 
 import java.util.List;
 
 public interface QuestionService {
 
-    QuestionResponseDTO createQuestion(QuestionRequestDTO dto);
+    QuestionResponseDto createQuestion(QuestionRequestDto dto);
 
-    QuestionResponseDTO updateQuestion(Long questionId, QuestionRequestDTO dto);
+    QuestionResponseDto updateQuestion(Long questionId, QuestionRequestDto dto);
 
     void deleteQuestion(Long questionId);
 
-    List<QuestionResponseDTO> getAllQuestionsByAssessment(Long assessmentId);
+    List<QuestionResponseDto> getAllQuestionsByAssessment(Long assessmentId);
 
-    QuestionResponseDTO getQuestionById(Long questionId);
+    QuestionResponseDto getQuestionById(Long questionId);
 }
