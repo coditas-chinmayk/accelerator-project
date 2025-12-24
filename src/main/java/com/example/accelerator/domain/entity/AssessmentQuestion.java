@@ -1,37 +1,74 @@
 package com.example.accelerator.domain.entity;
 
+import com.example.accelerator.domain.enums.QuestionType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "assessment_questions")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AssessmentQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "assessment_id")
     private Assessment assessment;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT", name = "question_text")
     private String questionText;
 
-    @Column(nullable = false)
-    private String questionType;   // SINGLE_CHOICE, TEXT, etc.
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, name = "question_type")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    private QuestionType questionType;   // SINGLE_CHOICE, TEXT, etc.
 
     private Boolean isRequired;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "order_index")
     private Integer orderIndex;
 
-    @Column(columnDefinition = "json")
+    @Column(columnDefinition = "json", name = "config")
     private String config;   // options, validations
 
+    @Column(name = "is_active")
     private Boolean isActive = true;
 
-    private Instant createdAt;
-    private Instant updatedAt;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private User createdBy;
+
+    @ManyToOne
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
+
+    @PrePersist
+    protected void onCreate(){
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt = LocalDateTime.now();
+
+    }
 }
