@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QuestionConditionRequestDTO {
+public class QuestionConditionRequestDto {
 
     @NotNull(message = "Question id is required")
     private Long questionId;

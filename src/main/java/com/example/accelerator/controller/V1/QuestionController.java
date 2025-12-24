@@ -1,12 +1,11 @@
 package com.example.accelerator.controller.V1;
 
-import com.example.accelerator.dto.QuestionRequestDTO;
-import com.example.accelerator.dto.QuestionResponseDTO;
+import com.example.accelerator.dto.QuestionRequestDto;
+import com.example.accelerator.dto.QuestionResponseDto;
 import com.example.accelerator.service.QuestionServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +28,11 @@ public class QuestionController {
     @Operation(
             summary = "Create a new question",
             description = "Creates a new question under an assessment")
-    public ResponseEntity<QuestionResponseDTO> createQuestion(
+    public ResponseEntity<QuestionResponseDto> createQuestion(
             @Valid
-            @RequestBody QuestionRequestDTO requestDTO){
+            @RequestBody QuestionRequestDto requestDTO){
 
-        QuestionResponseDTO responseDTO=questionService.createQuestion(requestDTO);
+        QuestionResponseDto responseDTO=questionService.createQuestion(requestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
@@ -42,11 +41,11 @@ public class QuestionController {
     @Operation(
             summary = "Update an existing question",
             description = "Updates question text, type, order, or configuration")
-    public ResponseEntity<QuestionResponseDTO> updateQuestion(
+    public ResponseEntity<QuestionResponseDto> updateQuestion(
             @PathVariable Long questionId,
-            @Valid @RequestBody QuestionRequestDTO requestDTO) {
+            @Valid @RequestBody QuestionRequestDto requestDTO) {
 
-        QuestionResponseDTO response =
+        QuestionResponseDto response =
                 questionService.updateQuestion(questionId, requestDTO);
 
         return ResponseEntity.ok(response);
@@ -68,10 +67,10 @@ public class QuestionController {
     @Operation(
             summary = "Get all questions for an assessment",
             description = "Fetches all active questions of an assessment ordered by position")
-    public ResponseEntity<List<QuestionResponseDTO>> getAllQuestionsByAssessment(
+    public ResponseEntity<List<QuestionResponseDto>> getAllQuestionsByAssessment(
             @PathVariable Long assessmentId) {
 
-        List<QuestionResponseDTO> questions =
+        List<QuestionResponseDto> questions =
                 questionService.getAllQuestionsByAssessment(assessmentId);
 
         return ResponseEntity.ok(questions);
@@ -82,10 +81,10 @@ public class QuestionController {
     @Operation(
             summary = "Get question by ID",
             description = "Fetches a single active question by its ID")
-    public ResponseEntity<QuestionResponseDTO> getQuestionById(
+    public ResponseEntity<QuestionResponseDto> getQuestionById(
             @PathVariable Long questionId) {
 
-        QuestionResponseDTO response =
+        QuestionResponseDto response =
                 questionService.getQuestionById(questionId);
 
         return ResponseEntity.ok(response);

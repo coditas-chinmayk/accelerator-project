@@ -2,8 +2,8 @@ package com.example.accelerator.service;
 
 import com.example.accelerator.domain.entity.Assessment;
 import com.example.accelerator.domain.entity.AssessmentQuestion;
-import com.example.accelerator.dto.QuestionRequestDTO;
-import com.example.accelerator.dto.QuestionResponseDTO;
+import com.example.accelerator.dto.QuestionRequestDto;
+import com.example.accelerator.dto.QuestionResponseDto;
 import com.example.accelerator.exception.ResourceNotFoundException;
 import com.example.accelerator.exception.BadRequestException;
 import com.example.accelerator.repository.AssessmentQuestionRepository;
@@ -28,7 +28,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     @Override
-    public QuestionResponseDTO createQuestion(QuestionRequestDTO dto) {
+    public QuestionResponseDto createQuestion(QuestionRequestDto dto) {
 
         validateQuestionRequest(dto);
         Assessment assessment=assessmentRepository.findById(dto.getAssessmentId())
@@ -58,7 +58,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     @Override
-    public QuestionResponseDTO updateQuestion(Long questionId, QuestionRequestDTO dto) {
+    public QuestionResponseDto updateQuestion(Long questionId, QuestionRequestDto dto) {
         validateQuestionRequest(dto);
 
         AssessmentQuestion question = questionRepository.findById(questionId)
@@ -104,7 +104,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     @Override
-    public List<QuestionResponseDTO> getAllQuestionsByAssessment(Long assessmentId) {
+    public List<QuestionResponseDto> getAllQuestionsByAssessment(Long assessmentId) {
 
         Assessment assessment = assessmentRepository.findById(assessmentId)
                 .orElseThrow(() ->
@@ -120,7 +120,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     @Override
-    public QuestionResponseDTO getQuestionById(Long questionId) {
+    public QuestionResponseDto getQuestionById(Long questionId) {
 
         AssessmentQuestion question = questionRepository.findById(questionId)
                 .orElseThrow(() ->
@@ -136,7 +136,7 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     // FOR VALIDATE question request :
-    private void validateQuestionRequest(QuestionRequestDTO dto) {
+    private void validateQuestionRequest(QuestionRequestDto dto) {
 
         if (dto.getQuestionText() == null || dto.getQuestionText().isBlank()) {
             throw new BadRequestException("Question text cannot be empty");
@@ -155,9 +155,9 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     // Object Mapper :
-    private QuestionResponseDTO mapToResponse(AssessmentQuestion question) {
+    private QuestionResponseDto mapToResponse(AssessmentQuestion question) {
 
-        return QuestionResponseDTO.builder()
+        return QuestionResponseDto.builder()
                 .id(question.getId())
                 .questionText(question.getQuestionText())
                 .questionType(question.getQuestionType())
