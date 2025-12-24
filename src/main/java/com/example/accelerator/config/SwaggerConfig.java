@@ -27,7 +27,7 @@ public class SwaggerConfig {
 
         return new OpenAPI()
 
-                // 🔐 BASIC AUTH configuration
+                //  BASIC AUTH configuration
                 .components(
                         new Components()
                                 .addSecuritySchemes(
@@ -38,12 +38,12 @@ public class SwaggerConfig {
                                 )
                 )
 
-                // 🔐 Apply Basic Auth globally
+                //  Apply Basic Auth globally
                 .addSecurityItem(
                         new SecurityRequirement().addList("basicAuth")
                 )
 
-                // 📄 API Information
+                //  API Information
                 .info(
                         new Info()
                                 .title("Clinical Assessment Builder API")
@@ -58,7 +58,7 @@ public class SwaggerConfig {
                                 .version("1.0.0")
                 )
 
-                // 🌍 Server Configurations
+                //  Server Configurations
                 .servers(List.of(
                         new Server()
                                 .url("http://localhost:8080")
