@@ -3,7 +3,8 @@ package com.example.accelerator.service;
 import com.example.accelerator.domain.entity.AssessmentQuestion;
 import com.example.accelerator.domain.entity.QuestionCondition;
 import com.example.accelerator.dto.CreateQuestionConditionRequestDto;
-import com.example.accelerator.dto.QuestionConditionResponseDTO;
+
+import com.example.accelerator.dto.QuestionConditionResponseDto;
 import com.example.accelerator.exception.InvalidConditionalRuleException;
 import com.example.accelerator.exception.ResourceAlreadyExistsException;
 import com.example.accelerator.exception.ResourceNotFoundException;
@@ -21,7 +22,7 @@ public class QuestionConditionService {
     @Autowired
     private  AssessmentQuestionRepository questionRepository;
 
-    public QuestionConditionResponseDTO createCondition(Long questionId, CreateQuestionConditionRequestDto dto) {
+    public QuestionConditionResponseDto createCondition(Long questionId, CreateQuestionConditionRequestDto dto) {
 
         // Validate child question
         AssessmentQuestion childQuestion = questionRepository.findById(questionId)
@@ -60,8 +61,8 @@ public class QuestionConditionService {
     }
 
 
-    private QuestionConditionResponseDTO mapToResponse(QuestionCondition condition) {
-        return QuestionConditionResponseDTO.builder()
+    private QuestionConditionResponseDto mapToResponse(QuestionCondition condition) {
+        return QuestionConditionResponseDto.builder()
                 .id(condition.getId())
                 .questionId(condition.getQuestion().getId())
                 .dependsOnQuestionId(condition.getDependsOnQuestion().getId())
