@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,7 +15,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)  // any field which goes null doesn't appear as in Json
-public class QuestionResponseDTO {
+public class QuestionResponseDto {
 
     private Long id;
     private String questionText;

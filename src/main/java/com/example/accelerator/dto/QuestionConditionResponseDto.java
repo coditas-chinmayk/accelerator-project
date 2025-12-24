@@ -2,27 +2,21 @@ package com.example.accelerator.dto;
 
 import com.example.accelerator.domain.enums.ConditionOperator;
 import com.example.accelerator.domain.enums.ExpectedValue;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class QuestionConditionRequestDTO {
+public class QuestionConditionResponseDto {
 
-    @NotNull(message = "Question id is required")
+    private Long id;
     private Long questionId;
-
-    @NotNull(message = "Depends-on question id is required")
     private Long dependsOnQuestionId;
-
-    @NotNull(message = "Condition operator is required")
     private ConditionOperator operator;
-
-    @NotNull(message = "Expected value is required")
     private ExpectedValue expectedValue;
 }
+

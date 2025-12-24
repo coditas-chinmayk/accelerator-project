@@ -7,7 +7,7 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 001-CREATE-ENUMS.sql
+            path: 001-create-enums.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
@@ -21,7 +21,7 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 002-CREATE-CORE-TABLES.sql
+            path: 002-create-core-tables.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
@@ -36,7 +36,7 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 003-CREATE-ASSESSMENT-TABLES.sql
+            path: 003-create-assessment-tables.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
@@ -50,7 +50,7 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 004-ALTER-QUESTIONCONDITION-TABLE-COLUMN.sql
+            path: 004-alter-question_condition-table-column.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
@@ -65,7 +65,36 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 005-ADD-ENUM-IN-QUESTIONCONDITION-TABLE.sql
+            path: 005-add-enum-in-question_condition-table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+
+  - changeSet:
+      id: 006-alter-assessment-table
+      author: Eshwari Chavan
+      comment: alter assessment table by adding updated_by column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 006-alter-assessment-table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+  - changeSet:
+      id: 007-alter-assessment_question-table
+      author: Eshwari Chavan
+      comment: alter assessment table by adding updated_by column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 007-alter-assessment_question-table.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
