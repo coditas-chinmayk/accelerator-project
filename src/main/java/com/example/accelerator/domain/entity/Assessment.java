@@ -39,7 +39,7 @@ public class Assessment {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "assessment_status")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    private AssessmentStatus status;   // DRAFT or FINAL
+    private AssessmentStatus status = AssessmentStatus.DRAFT;   // DRAFT or FINAL
 
     @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AssessmentQuestion> questions = new ArrayList<>();
