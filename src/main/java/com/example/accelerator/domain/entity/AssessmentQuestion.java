@@ -10,6 +10,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Entity
 @Data
@@ -44,7 +45,7 @@ public class AssessmentQuestion {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb", name = "config")
-    private String config;   // options, validations
+    private Map<String, Object> config;
 
     @Column(name = "is_active")
     private Boolean isActive = true;
