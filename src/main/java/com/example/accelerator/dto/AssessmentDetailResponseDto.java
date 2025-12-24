@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -14,13 +15,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AssessmentResponseDto {
+public class AssessmentDetailResponseDto {
     private Long id;
     private Long userId;
     private String username;
+    private String description;
     private String assessmentCategory;
+    private String status;    //assessment status -> DRAFT or FINAL
     private List<AssessmentQuestion> assessmentQuestions;
-
-
-
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

@@ -54,3 +54,18 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+
+
+
+  - changeSet:
+      id: 005-ADD-ENUM-IN-QUESTIONCONDITION-TABLE
+      author: Eshwari Chavan
+      comment: add enum as expected_value in question condition table
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 005-ADD-ENUM-IN-QUESTIONCONDITION-TABLE.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

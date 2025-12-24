@@ -10,5 +10,10 @@ import java.util.List;
 
 @Repository
 public interface AssessmentQuestionRepository extends JpaRepository<AssessmentQuestion,Long> {
+
+    boolean existsByAssessmentIdAndOrderIndex(Long assessmentId, Integer orderIndex);
+
+    List<AssessmentQuestion> findByAssessmentIdAndIsActiveTrueOrderByOrderIndexAsc(Long assessmentId);
+
     List<AssessmentQuestion> findAllByAssessment(Assessment assessment);
 }

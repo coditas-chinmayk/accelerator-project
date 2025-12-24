@@ -23,7 +23,8 @@ public class ApiResponseDto<T> {
     private LocalDateTime timeStamp;
 
     public static <T> ApiResponseDto<T> ok(String message, T data){
-        return com.example.accelerator.dto.ApiResponseDto.<T>builder()
+        return ApiResponseDto.<T>builder()
+                .success(true)
                 .message(message)
                 .data(data)
                 .status(HttpStatus.OK)
