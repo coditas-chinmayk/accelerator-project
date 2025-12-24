@@ -73,29 +73,28 @@ databaseChangeLog:
 
 
   - changeSet:
-      id: 006-seed-common-personal-questions
-      author: Eshwari Chavan
-      comment: Seed default/common questions like Name, Gender, Age, Location, Insurance availability
-      changes:
-        - sqlFile:
-            dbms: postgresql
-            encoding: utf8
-            path: 006-seed-common-personal-questions.sql
-            relativeToChangelogFile: true
-            splitStatements: true
-            stripComments: true
-
-
-
-  - changeSet:
-      id: 008-alter-assessment-table
+      id: 006-alter-assessment-table
       author: Eshwari Chavan
       comment: alter assessment table by adding updated_by column
       changes:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: 008-alter-assessment-table.sql
+            path: 006-alter-assessment-table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+  - changeSet:
+      id: 007-alter-assessment_question-table
+      author: Eshwari Chavan
+      comment: alter assessment table by adding updated_by column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 007-alter-assessment_question-table.sql
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
