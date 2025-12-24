@@ -42,7 +42,8 @@ public class AssessmentQuestion {
     @Column(nullable = false, name = "order_index")
     private Integer orderIndex;
 
-    @Column(columnDefinition = "json", name = "config")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "jsonb", name = "config")
     private String config;   // options, validations
 
     @Column(name = "is_active")
