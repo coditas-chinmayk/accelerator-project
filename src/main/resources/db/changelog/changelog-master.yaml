@@ -84,3 +84,17 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+
+
+  - changeSet:
+      id: 007-alter-assessment_question-table
+      author: Eshwari Chavan
+      comment: alter assessment table by adding updated_by column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 007-alter-assessment_question-table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
