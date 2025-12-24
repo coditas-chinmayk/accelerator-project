@@ -31,10 +31,11 @@ public class AssessmentQuestion {
     @Column(nullable = false, columnDefinition = "TEXT", name = "question_text")
     private String questionText;
 
+    // Enum Injected :
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "question_type")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    private QuestionType questionType;   // SINGLE_CHOICE, TEXT, etc.
+    private QuestionType questionType;
 
     private Boolean isRequired;
 
@@ -53,6 +54,7 @@ public class AssessmentQuestion {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    // mappings injected :
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
