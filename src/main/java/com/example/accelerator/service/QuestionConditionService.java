@@ -3,62 +3,50 @@ package com.example.accelerator.service;
 import com.example.accelerator.domain.entity.AssessmentQuestion;
 import com.example.accelerator.domain.entity.QuestionCondition;
 import com.example.accelerator.dto.CreateQuestionConditionRequestDto;
-import com.example.accelerator.dto.QuestionConditionResponseDto;
+import com.example.accelerator.dto.QuestionConditionResponseDTO;
+import com.example.accelerator.exception.InvalidConditionalRuleException;
+import com.example.accelerator.exception.ResourceAlreadyExistsException;
+import com.example.accelerator.exception.ResourceNotFoundException;
 import com.example.accelerator.repository.AssessmentQuestionRepository;
 import com.example.accelerator.repository.QuestionConditionRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
 public class QuestionConditionService {
+    @Autowired
+    private  QuestionConditionRepository conditionRepository;
+    @Autowired
+    private  AssessmentQuestionRepository questionRepository;
 
-    private final QuestionConditionRepository conditionRepository;
-    private final AssessmentQuestionRepository questionRepository;
+    public QuestionConditionResponseDTO createCondition(Long questionId, CreateQuestionConditionRequestDto dto) {
 
-    public QuestionConditionResponseDto createCondition(Long questionId, CreateQuestionConditionRequestDto dto) {
-
-        //  Validate child question
+        // Validate child question
         AssessmentQuestion childQuestion = questionRepository.findById(questionId)
-                        .orElseThrow(() -> new ResponseStatusException(
-                                HttpStatus.NOT_FOUND,
-                                "Question not found"
-                        ));
+                        .orElseThrow(() -> new ResourceNotFoundException("Question not found"));
 
         // Validate parent question
         AssessmentQuestion parentQuestion = questionRepository.findById(dto.getDependsOnQuestionId())
-                        .orElseThrow(() -> new ResponseStatusException(
-                                HttpStatus.NOT_FOUND,
-                                "Depends-on question not found"
-                        ));
+                        .orElseThrow(() -> new ResourceNotFoundException("Depends-on question not found"));
 
-        //  Validate same assessment
+        // Validate same assessment
         if (!childQuestion.getAssessment().getId().equals(parentQuestion.getAssessment().getId())) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Questions must belong to the same assessment"
-            );
+            throw new InvalidConditionalRuleException("Questions must belong to the same assessment");
         }
 
         // Validate previous question rule
         if (parentQuestion.getOrderIndex() >= childQuestion.getOrderIndex()) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Conditional rule must reference a previous question"
-            );
+            throw new InvalidConditionalRuleException("Conditional rule must reference a previous question");
         }
 
-        // Validate one rule per question
+        //  Validate one rule per question
         if (conditionRepository.existsByQuestionId(questionId)) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT,
-                    "Conditional rule already exists for this question"
-            );
+            throw new ResourceAlreadyExistsException("Conditional rule already exists for this question");
         }
 
-        // Persist
+        // Persist rule
         QuestionCondition condition = QuestionCondition.builder()
                 .question(childQuestion)
                 .dependsOnQuestion(parentQuestion)
@@ -67,12 +55,13 @@ public class QuestionConditionService {
                 .build();
 
         QuestionCondition savedCondition = conditionRepository.save(condition);
+
         return mapToResponse(savedCondition);
     }
 
-    // Mapping belongs in service
-    private QuestionConditionResponseDto mapToResponse(QuestionCondition condition) {
-        return QuestionConditionResponseDto.builder()
+
+    private QuestionConditionResponseDTO mapToResponse(QuestionCondition condition) {
+        return QuestionConditionResponseDTO.builder()
                 .id(condition.getId())
                 .questionId(condition.getQuestion().getId())
                 .dependsOnQuestionId(condition.getDependsOnQuestion().getId())
@@ -81,4 +70,3 @@ public class QuestionConditionService {
                 .build();
     }
 }
-
