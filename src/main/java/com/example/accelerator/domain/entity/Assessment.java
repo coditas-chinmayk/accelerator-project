@@ -37,7 +37,7 @@ public class Assessment {
     private Category category;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, name = "assessment_status")
+    @Column(nullable = false, name = "status")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private AssessmentStatus status = AssessmentStatus.DRAFT;   // DRAFT or FINAL
 

@@ -93,12 +93,14 @@ public class QuestionServiceImpl implements QuestionService{
 
 
     @Override
-    public void deleteQuestion(Long questionId) {
+    public String deleteQuestion(Long questionId) {
         AssessmentQuestion question = questionRepository.findById(questionId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Question not found with id " + questionId));
 
         question.setIsActive(false);
+        questionRepository.save(question);
+        return "Question deleted successfully";
     }
 
 
