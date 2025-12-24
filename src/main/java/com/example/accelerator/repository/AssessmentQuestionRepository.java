@@ -16,4 +16,7 @@ public interface AssessmentQuestionRepository extends JpaRepository<AssessmentQu
     List<AssessmentQuestion> findByAssessmentIdAndIsActiveTrueOrderByOrderIndexAsc(Long assessmentId);
 
     List<AssessmentQuestion> findAllByAssessment(Assessment assessment);
+
+    boolean existsByAssessmentIdAndQuestionText(Long assessmentId, String questionText);
+
 }
