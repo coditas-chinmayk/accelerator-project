@@ -7,35 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+// AssessmentListItemDto.java - for dashboard
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AssessmentDetailResponseDto {
-
+public class AssessmentListItemDto {
     private Long id;
-
     private String name;
-
-    private String description;
-
-    private String category;
-
-
-    private String status;
-
-    private Long createdById;
-    private String createdByName;
-
-    private Long updatedById;
-    private String updatedByName;
-
-    private List<QuestionResponseDto> questions;
-
-    private LocalDateTime createdAt;
+    private String category;        // or Category name as String
+    private String status;          // "DRAFT"
     private LocalDateTime updatedAt;
-
+    private String createdByName;   // optional
 }

@@ -2,6 +2,7 @@ package com.example.accelerator.dto;
 
 import com.example.accelerator.domain.enums.ConditionOperator;
 import com.example.accelerator.domain.enums.ExpectedValue;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class QuestionConditionRequestDto {
 
     @NotNull(message = "Question id is required")

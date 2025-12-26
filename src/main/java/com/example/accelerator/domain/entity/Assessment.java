@@ -42,6 +42,7 @@ public class Assessment {
     private AssessmentStatus status = AssessmentStatus.DRAFT;   // DRAFT or FINAL
 
     @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("orderIndex ASC")
     private List<AssessmentQuestion> questions = new ArrayList<>();
 
     @ManyToOne
