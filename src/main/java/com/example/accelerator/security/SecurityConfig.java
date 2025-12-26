@@ -30,6 +30,16 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+
+                        //  Allow Swagger endpoints
+                        .requestMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs",
+                                "/v3/api-docs/**"
+                        ).permitAll()
+
+                        // Everything else secured
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(userDetailsService)
@@ -37,6 +47,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
