@@ -24,7 +24,7 @@ public class QuestionController {
     private QuestionServiceImpl questionService;
 
 
-    @PostMapping
+    @PostMapping("/create")
     @Operation(
             summary = "Create a new question",
             description = "Creates a new question under an assessment")
@@ -37,7 +37,7 @@ public class QuestionController {
     }
 
 
-    @PutMapping("/{questionId}")
+    @PutMapping("/update/{questionId}")
     @Operation(
             summary = "Update an existing question",
             description = "Updates question text, type, order, or configuration")
@@ -53,17 +53,19 @@ public class QuestionController {
 
 
 
-    @DeleteMapping("/{questionId}")
+    @DeleteMapping("/delete/{questionId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(
             summary = "Delete a question",
             description = "Soft deletes a question by marking it inactive")
-    public void deleteQuestion(@PathVariable Long questionId) {
-        questionService.deleteQuestion(questionId);
+    public ResponseEntity<String> deleteQuestion(
+            @PathVariable Long questionId) {
+
+        return ResponseEntity.ok(questionService.deleteQuestion(questionId));
     }
 
 
-    @GetMapping("/assessment/{assessmentId}")
+    @GetMapping("/allAssessment/{assessmentId}")
     @Operation(
             summary = "Get all questions for an assessment",
             description = "Fetches all active questions of an assessment ordered by position")
@@ -77,7 +79,7 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/{questionId}")
+    @GetMapping("/byId/{questionId}")
     @Operation(
             summary = "Get question by ID",
             description = "Fetches a single active question by its ID")

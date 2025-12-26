@@ -11,7 +11,7 @@ public interface QuestionService {
 
     QuestionResponseDto updateQuestion(Long questionId, QuestionRequestDto dto);
 
-    void deleteQuestion(Long questionId);
+    String deleteQuestion(Long questionId);
 
     List<QuestionResponseDto> getAllQuestionsByAssessment(Long assessmentId);
 
