@@ -8,16 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class QuestionConditionResponseDto {
 
     private Long id;
-
     private Long questionId;
     private Long dependsOnQuestionId;
-
     private ConditionOperator operator;
     private ExpectedValue expectedValue;
 }
+
