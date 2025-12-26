@@ -98,3 +98,15 @@ databaseChangeLog:
             relativeToChangelogFile: true
             splitStatements: true
             stripComments: true
+  - changeSet:
+      id: 008-SEED-REQUIRED-CATEGORIES
+      author: Chinmay Kale
+      comment: seed the four required assessment categories
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 008-seed-required-categories.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
