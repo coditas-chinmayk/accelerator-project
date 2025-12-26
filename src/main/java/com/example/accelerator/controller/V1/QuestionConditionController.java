@@ -5,7 +5,7 @@ import com.example.accelerator.dto.ApiResponseDto;
 import com.example.accelerator.dto.CreateQuestionConditionRequestDto;
 import com.example.accelerator.dto.QuestionConditionResponseDto;
 import com.example.accelerator.dto.UpdateQuestionConditionRequestDto;
-import com.example.accelerator.service.QuestionConditionService;
+import com.example.accelerator.service.QuestionConditionServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionConditionController {
 
     @Autowired
-    private QuestionConditionService questionConditionService;
+    private QuestionConditionServiceImpl questionConditionService;
 
     // CREATE conditional logic
     @PostMapping
