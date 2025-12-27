@@ -1,6 +1,6 @@
 package com.example.accelerator.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,15 +8,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class AssessmentCreateRequestDto {
-
-    @NotBlank(message = "Name is required")
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CategoryResponseDto {
+    private Long id;
     private String name;
-
     private String description;
-
-    @NotBlank(message = "Category is required")
-    private String category;
 }

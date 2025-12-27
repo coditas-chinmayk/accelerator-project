@@ -8,15 +8,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class AssessmentCreateRequestDto {
-
-    @NotBlank(message = "Name is required")
+@NoArgsConstructor
+public class CategoryCreateRequestDto {
+    @NotBlank
     private String name;
-
     private String description;
-
-    @NotBlank(message = "Category is required")
-    private String category;
 }
